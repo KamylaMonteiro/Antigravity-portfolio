@@ -297,10 +297,11 @@ button, input, textarea {
   padding-top: 3rem;
   row-gap: 3rem;
   align-items: center;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .home__content {
-  text-align: center;
+  text-align: left;
 }
 
 .home__subtitle {
@@ -332,7 +333,7 @@ button, input, textarea {
 
 .home__buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -342,7 +343,6 @@ button, input, textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
-  order: -1; /* Coloca a imagem no topo em dispositivos móveis */
 }
 
 .home__img-side img {
@@ -566,18 +566,12 @@ button, input, textarea {
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  max-width: 800px; /* Diminuído para focar melhor e não ficar tão grande */
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  width: calc(100% - 3rem); /* Considera o var(--m-1-5) que é 1.5rem x 2 */
-}
-
-@media screen and (max-width: 968px) {
-  .data-projects__container {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
+  width: 100%;
+  padding-left: var(--m-1-5);
+  padding-right: var(--m-1-5);
 }
 
 .data-projects__card {
