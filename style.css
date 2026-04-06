@@ -124,8 +124,10 @@ button, input, textarea {
 /* ==================== REUSABLE CLASSES ==================== */
 .container {
   max-width: 1024px;
-  margin-left: var(--m-1-5);
-  margin-right: var(--m-1-5);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--m-1-5);
+  padding-right: var(--m-1-5);
 }
 
 .grid {
@@ -140,7 +142,7 @@ button, input, textarea {
 .section__title {
   font-size: var(--h2-font-size);
   text-align: center;
-  margin-bottom: var(--m-0-5);
+  margin-bottom: 4rem;
 }
 
 .section__subtitle {
@@ -340,6 +342,7 @@ button, input, textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
+  order: -1; /* Coloca a imagem no topo em dispositivos móveis */
 }
 
 .home__img-side img {
@@ -572,8 +575,8 @@ button, input, textarea {
 @media screen and (max-width: 968px) {
   .data-projects__container {
     width: 100%;
-    margin-left: var(--m-1-5);
-    margin-right: var(--m-1-5);
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -944,6 +947,10 @@ button, input, textarea {
   
   .home__content {
     text-align: left;
+  }
+
+  .home__img-side {
+    order: 1; /* Retorna a imagem para o lado direito no desktop */
   }
 
   .home__buttons {
