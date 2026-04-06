@@ -297,11 +297,10 @@ button, input, textarea {
   padding-top: 3rem;
   row-gap: 3rem;
   align-items: center;
-  grid-template-columns: repeat(2, 1fr);
 }
 
 .home__content {
-  text-align: left;
+  text-align: center;
 }
 
 .home__subtitle {
@@ -333,7 +332,7 @@ button, input, textarea {
 
 .home__buttons {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -343,6 +342,7 @@ button, input, textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
+  order: -1;
 }
 
 .home__img-side img {
