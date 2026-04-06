@@ -9,9 +9,9 @@
   --bg-color: hsl(var(--hue), 20%, 8%);
   --surface-color: hsl(var(--hue), 20%, 12%);
   --surface-hover: hsl(var(--hue), 20%, 16%);
-  /* Cores primárias */
-  --primary-color: hsl(250, 69%, 60%);
-  --primary-color-alt: hsl(250, 69%, 52%);
+  /* Cores primárias - Azul Corporativo Premium */
+  --primary-color: hsl(215, 90%, 55%);
+  --primary-color-alt: hsl(215, 90%, 45%);
   /* Textos */
   --text-title: hsl(var(--hue), 10%, 95%);
   --text-main: hsl(var(--hue), 10%, 75%);
@@ -167,13 +167,13 @@ button, input, textarea {
 .button--primary {
   background-color: var(--primary-color);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 12px rgba(37, 131, 243, 0.2);
 }
 
 .button--primary:hover {
   background-color: var(--primary-color-alt);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 6px 16px rgba(37, 131, 243, 0.4);
 }
 
 .button--ghost {
@@ -297,6 +297,10 @@ button, input, textarea {
   align-items: center;
 }
 
+.home__content {
+  text-align: center;
+}
+
 .home__subtitle {
   display: block;
   font-size: var(--h3-font-size);
@@ -315,38 +319,41 @@ button, input, textarea {
   color: var(--primary-color);
   margin-bottom: var(--m-1-5);
   font-weight: var(--font-medium);
+  line-height: 1.35;
 }
 
 .home__description {
+  margin-top: 1.5rem;
   margin-bottom: var(--m-2);
   line-height: 1.6;
 }
 
 .home__buttons {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.home__social {
-  position: absolute;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%);
+.home__img-side {
   display: flex;
-  flex-direction: column;
-  row-gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.home__social-link {
-  font-size: 1.5rem;
-  color: var(--text-muted);
-  transition: 0.3s;
+.home__img-side img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: float 6s ease-in-out infinite;
 }
 
-.home__social-link:hover {
-  color: var(--primary-color);
-  transform: translateX(-0.25rem);
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
 /* ==================== OVERRIDES DE ABOUT ==================== */
@@ -440,15 +447,156 @@ button, input, textarea {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
+.projects__img-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
 .projects__img {
   width: 100%;
-  height: 220px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: top;
   transition: 0.5s;
 }
 
-.projects__card:hover .projects__img {
+.projects__img-container .projects__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.projects__img--secondary {
+  opacity: 0;
+  animation: oscillate 8s infinite ease-in-out;
+}
+
+/* For projects with 3 images */
+.projects__img--secondary.three-images {
+  animation: oscillate-3-second 12s infinite ease-in-out;
+}
+
+.projects__img--tertiary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: oscillate-3-third 12s infinite ease-in-out;
+}
+
+@keyframes oscillate {
+  0%, 40% { opacity: 0; }
+  60%, 100% { opacity: 1; }
+}
+
+@keyframes oscillate-3-second {
+  0%, 33% { opacity: 0; }
+  40%, 60% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+
+@keyframes oscillate-3-third {
+  0%, 66% { opacity: 0; }
+  73%, 93% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.data-projects__card:hover .projects__img {
   transform: scale(1.05);
+}
+
+.projects__iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 62.25%; /* Proporção do PowerBI */
+  height: 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.projects__iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.projects__iframe--hidedetails {
+  height: calc(100% + 36px) !important; /* Esconde a barra nativa */
+}
+
+.projects__fullscreen-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #f3f2f1; /* Cor padrão da barra do Power BI */
+  color: #333;
+  width: 34px;
+  height: 34px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: 0.3s;
+  border-left: 1px solid var(--border-color);
+}
+
+.projects__fullscreen-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+
+/* Data Projects Full Width Layout */
+.data-projects__container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-width: 800px; /* Diminuído para focar melhor e não ficar tão grande */
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 3rem); /* Considera o var(--m-1-5) que é 1.5rem x 2 */
+}
+
+@media screen and (max-width: 968px) {
+  .data-projects__container {
+    width: 100%;
+    margin-left: var(--m-1-5);
+    margin-right: var(--m-1-5);
+  }
+}
+
+.data-projects__card {
+  position: relative;
+  background-color: var(--surface-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: 0.4s;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.data-projects__card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.data-projects__card .projects__iframe-wrapper {
+  padding-bottom: 56.25%; /* Ratio 16:9 ideal para Power BI Full */
 }
 
 .projects__badge {
@@ -629,7 +777,7 @@ button, input, textarea {
 
 .contact__content:focus-within {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px rgba(37, 131, 243, 0.1);
 }
 
 .contact__area {
@@ -763,15 +911,6 @@ button, input, textarea {
   .button {
     justify-content: center;
   }
-  .home__social {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    flex-direction: row;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
 }
 
 /* For medium devices */
@@ -803,8 +942,12 @@ button, input, textarea {
     align-items: center;
   }
   
-  .home__social {
-    right: 3rem;
+  .home__content {
+    text-align: left;
+  }
+
+  .home__buttons {
+    justify-content: flex-start;
   }
 
   .projects__container {
@@ -844,17 +987,12 @@ button, input, textarea {
     height: 100%;
   }
 
+  .projects__card--featured .projects__img {
+    width: 50%;
+    height: 100%;
+  }
+
   .contact__container {
     column-gap: 5rem;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .home__social {
-    right: 10rem;
-    font-size: 2rem;
-  }
-  .home__social-link {
-    font-size: 2rem;
   }
 }
